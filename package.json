@@ -4,7 +4,7 @@
   "description": "A simple, dependency free Vue specific DocBlocking package",
   "version": "2.1.0",
   "license": "MIT",
-  "publisher": "Bo Warren",
+  "publisher": "BoWarren46",
   "author": "Neil Brayfield <dev@brayfield.uk> (PHP Code Base), Bo H. Warren (mods for vue files)",
   "engines": {
     "vscode": "^1.17.0"

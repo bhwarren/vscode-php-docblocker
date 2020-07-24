@@ -1,10 +1,7 @@
-# PHP DocBlocker
+# Vue DocBlocker
 
-[![Latest Release](https://vsmarketplacebadge.apphb.com/version-short/neilbrayfield.php-docblocker.svg)](https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker) [![Installs](https://vsmarketplacebadge.apphb.com/installs/neilbrayfield.php-docblocker.svg)](https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker) [![Rating](https://vsmarketplacebadge.apphb.com/rating-short/neilbrayfield.php-docblocker.svg)](https://marketplace.visualstudio.com/items?itemName=neilbrayfield.php-docblocker) [![Build status](https://travis-ci.org/neild3r/vscode-php-docblocker.svg?branch=master)](https://travis-ci.org/neild3r/vscode-php-docblocker) [![Coverage status](https://coveralls.io/repos/github/neild3r/vscode-php-docblocker/badge.svg)](https://coveralls.io/github/neild3r/vscode-php-docblocker)
+Basic Vue DocBlocking extension.
 
-Basic PHP DocBlocking extension.
-
-We now have a set of unit tests and some full coverage on the parsing of signatures as well as continuous integration. This should ensure the extension remains stable as development progresses.
 
 ## Features
 
@@ -22,16 +19,16 @@ This extension has no dependencies.
 
 This extension contributes the following settings:
 
-* `php-docblocker.gap`: set to `false` to disable the gap between the description and tags
-* `php-docblocker.returnGap`: set to `true` to add a gap between the param and return tags
-* `php-docblocker.returnVoid`: set to `false` to turn off the automatic void return type when it can't be determined
-* `php-docblocker.extra`: an array of extra tags to add to each DocBlock (These can include tabstops and snippet variables)
-* `php-docblocker.useShortNames`: Whether we should use short type names. e.g. bool or boolean
-* `php-docblocker.qualifyClassNames`: When adding type hints for class names search namespace use statements and qualify the class 
-* `php-docblocker.author`: An object containing your default author tag settings
-* `php-docblocker.functionTemplate`: See below for how to set up docblock templates
-* `php-docblocker.propertyTemplate`: See below for how to set up docblock templates
-* `php-docblocker.classTemplate`: See below for how to set up docblock templates
+* `vue-docblocker.gap`: set to `false` to disable the gap between the description and tags
+* `vue-docblocker.returnGap`: set to `true` to add a gap between the param and return tags
+* `vue-docblocker.returnVoid`: set to `false` to turn off the automatic void return type when it can't be determined
+* `vue-docblocker.extra`: an array of extra tags to add to each DocBlock (These can include tabstops and snippet variables)
+* `vue-docblocker.useShortNames`: Whether we should use short type names. e.g. bool or boolean
+* `vue-docblocker.qualifyClassNames`: When adding type hints for class names search namespace use statements and qualify the class 
+* `vue-docblocker.author`: An object containing your default author tag settings
+* `vue-docblocker.functionTemplate`: See below for how to set up docblock templates
+* `vue-docblocker.propertyTemplate`: See below for how to set up docblock templates
+* `vue-docblocker.classTemplate`: See below for how to set up docblock templates
 
 ### Templating
 
@@ -177,9 +174,3 @@ and can be triggered by typing @ then another characted (Provided your vscode se
 | @uses                        | @uses ${1:MyClass::function} ${2:Name}  |
 | @var                         | @var ${1:mixed}                         |
 | @version                     | @version ${1:1.0.0}                     |
-
-## Future development
-
-It probably wouldn't be too much work to expand this to work with multiple languages. If this is something you are interested in, please pop over to github and add your feedback to the issue [neild3r/vscode-php-docblocker#17](https://github.com/neild3r/vscode-php-docblocker/issues/17).
-
-Please also feel free to suggest new configuration options, I appreciate at this time the extension is mostly set up for my own DocBlock style requirements but more options could be added for other use cases.
