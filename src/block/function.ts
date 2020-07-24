@@ -16,7 +16,7 @@ export default class FunctionBlock extends Block
     /**
      * @inheritdoc
      */
-    protected pattern:RegExp = /^\s*((.*)(protected|private|public))?(.*)?\s*function\s+&?([A-Za-z0-9_]+)\s*\(([^{;]*)/m;
+    protected pattern:RegExp = /^\s*((.*)(protected|private|public))?(.*)?\s*(function\s+)?&?([A-Za-z0-9_]+)\s*\(([^{;]*)/m;
 
     /**
      * @inheritdoc
@@ -27,35 +27,32 @@ export default class FunctionBlock extends Block
 
         let doc = new Doc('Undocumented function');
         doc.template = Config.instance.get('functionTemplate');
-        let argString = this.getEnclosed(params[6], "(", ")");
+        let argString = this.getEnclosed(params[7], "(", ")");
         let head:string;
 
 
         if (argString != "") {
-            let args = argString.split(',');
+            let args = argString.split(",");
 
             if (Config.instance.get('qualifyClassNames')) {
                 head = this.getClassHead();
             }
 
             for (let index = 0; index < args.length; index++) {
-                let arg = args[index];
-                let parts = arg.match(/^\s*(\?)?\s*([A-Za-z0-9_\\]+)?\s*\&?((?:[.]{3})?\$[A-Za-z0-9_]+)\s*\=?\s*(.*)\s*/m);
-                var type = '[type]';
+                let arg = args[index].trim();
+                if(!arg)
+                    continue
 
-                if (parts[2] != null) {
-                    parts[2] = TypeUtil.instance.getFullyQualifiedType(parts[2], head);
+                let parts = arg.split("=")
+                var type = 'any';
+
+              
+                if (parts[1] != null) {
+                    parts[1] = parts[1].trim()
+                    type = `${this.inferType(parts[1])}`
                 }
 
-                if (parts[2] != null && parts[1] === '?') {
-                    type = TypeUtil.instance.getFormattedTypeByName(parts[2])+'|null';
-                } else if (parts[2] != null) {
-                    type = TypeUtil.instance.getFormattedTypeByName(parts[2]);
-                } else if (parts[4] != null && parts[4] != "") {
-                    type = TypeUtil.instance.getFormattedTypeByName(this.getTypeFromValue(parts[4]));
-                }
-
-                doc.params.push(new Param(type, parts[3]));
+                doc.params.push(new Param(type, parts[0].trim()));
             }
         }
 
@@ -70,7 +67,7 @@ export default class FunctionBlock extends Block
                 ? TypeUtil.instance.getFormattedTypeByName(returnType[2])+'|null'
                 : TypeUtil.instance.getFormattedTypeByName(returnType[2]);
         } else {
-            doc.return = this.getReturnFromName(params[5]);
+            doc.return = this.getReturnFromName(params[6]);
         }
 
         return doc;

@@ -38,7 +38,7 @@ export abstract class Block
      *
      * @type {string}
      */
-    protected signature:string;
+    public signature:string;
 
     /**
      * Default signature end pattern
@@ -180,7 +180,7 @@ export abstract class Block
     }
 
     /**
-     * Take the value and parse and try to infer its type
+     * Take the value and parse and try to infer its type (PHP)
      *
      * @param {string} value
      * @returns {string}
@@ -215,6 +215,32 @@ export abstract class Block
         }
 
         return '[type]';
+    }
+
+    /**
+     * Infer the type of the value based on it's string representation
+     * @param value the value to infer the JS type from
+     */
+    public inferType(value:string){
+        value = value.toLowerCase().trim()
+        if(value == 'true' || value == 'false')
+            return "bool"
+        if((/[0-9.]+/).test(value))
+            return "Number"
+        if(value.startsWith(`'`) && value.endsWith(`'`) || value.startsWith(`"`) && value.endsWith(`"`) || value.startsWith(`\``) && value.endsWith(`\``))
+            return "String"
+        
+        if(value.startsWith('{') && value.endsWith('}'))
+            return "Object"
+        
+        try{
+            let parsedValue = JSON.parse(value)
+            if(Array.isArray(parsedValue))
+                return "Array"
+        }
+        catch(e){}
+
+        return "any"
     }
 
     /**

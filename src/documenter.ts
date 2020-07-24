@@ -3,6 +3,7 @@ import FunctionBlock from "./block/function";
 import Property from "./block/property";
 import Class from "./block/class";
 import {Doc, Param} from "./doc";
+import * as vscode from 'vscode';
 
 /**
  * Check which type of docblock we need and instruct the components to build the

@@ -1,11 +1,11 @@
 {
-  "name": "php-docblocker",
-  "displayName": "PHP DocBlocker",
-  "description": "A simple, dependency free PHP specific DocBlocking package",
+  "name": "vue-docblocker",
+  "displayName": "Vue DocBlocker",
+  "description": "A simple, dependency free Vue specific DocBlocking package",
   "version": "2.1.0",
   "license": "MIT",
-  "publisher": "neilbrayfield",
-  "author": "Neil Brayfield <dev@brayfield.uk>",
+  "publisher": "Bo Warren",
+  "author": "Neil Brayfield <dev@brayfield.uk> (PHP Code Base), Bo H. Warren (mods for vue files)",
   "engines": {
     "vscode": "^1.17.0"
   },
@@ -13,80 +13,79 @@
     "Programming Languages"
   ],
   "keywords": [
-    "php",
+    "vue",
     "autocomplete",
     "docblock"
   ],
   "activationEvents": [
-    "onLanguage:php",
-    "onLanguage:hack"
+    "onLanguage:vue"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/neild3r/vscode-php-docblocker.git"
+    "url": "https://github.com/bhwarren/vscode-vue-docblocker.git"
   },
   "bugs": {
-    "url": "https://github.com/neild3r/vscode-php-docblocker/issues"
+    "url": "https://github.com/bhwarren/vscode-vue-docblocker/issues"
   },
   "icon": "images/logo.png",
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
       {
-        "command": "php-docblocker.trigger",
-        "title": "Insert PHP Docblock"
+        "command": "vue-docblocker.trigger",
+        "title": "Insert Vue Docblock"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "PHP DocBlocker configuration",
+      "title": "Vue DocBlocker configuration",
       "properties": {
-        "php-docblocker.gap": {
+        "vue-docblocker.gap": {
           "type": "boolean",
           "default": true,
           "description": "If there should be a gap between the description and tags"
         },
-        "php-docblocker.returnGap": {
+        "vue-docblocker.returnGap": {
           "type": "boolean",
           "default": false,
           "description": "If there should be a gap between params and return"
         },
-        "php-docblocker.returnVoid": {
+        "vue-docblocker.returnVoid": {
           "type": "boolean",
           "default": true,
           "description": "Should we return void if there is no detectable return type?"
         },
-        "php-docblocker.extra": {
+        "vue-docblocker.extra": {
           "type": "array",
           "default": [],
           "description": "Extra tags you wish to include in every DocBlock"
         },
-        "php-docblocker.useShortNames": {
+        "vue-docblocker.useShortNames": {
           "type": "boolean",
           "default": false,
           "description": "Whether you want to use int instead of integer and bool instead of boolean."
         },
-        "php-docblocker.qualifyClassNames": {
+        "vue-docblocker.qualifyClassNames": {
           "type": "boolean",
           "default": false,
           "description": "Fully qualifies any data types used in param and returns by reading the namespaces."
         },
-        "php-docblocker.functionTemplate": {
+        "vue-docblocker.functionTemplate": {
           "type": "object",
           "default": null,
           "description": "Specify the default template for functions."
         },
-        "php-docblocker.propertyTemplate": {
+        "vue-docblocker.propertyTemplate": {
           "type": "object",
           "default": null,
           "description": "Specify the default template for class variables."
         },
-        "php-docblocker.classTemplate": {
+        "vue-docblocker.classTemplate": {
           "type": "object",
           "default": null,
           "description": "Specify the default template for classes."
         },
-        "php-docblocker.author": {
+        "vue-docblocker.author": {
           "type": "object",
           "default": {
             "name": "Name",

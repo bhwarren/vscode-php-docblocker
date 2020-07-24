@@ -109,7 +109,7 @@ export class Doc
                 if (paramString != "") {
                     paramString += "\n";
                 }
-                paramString += "@param \${###:"+param.type+"} " + param.name.replace('$', '\\$');
+                paramString += "@param {\${###:"+param.type+"}} " + param.name.replace('$', '\\$') + " \${###:}";
             });
         }
 
@@ -178,7 +178,7 @@ export class Doc
 
         templateString = templateString.replace(/^$/gm, " *");
         templateString = templateString.replace(/^(?!(\s\*|\/\*))/gm, " * $1");
-
+        console.log(templateString)
         let snippet = new SnippetString(templateString);
 
         return snippet;

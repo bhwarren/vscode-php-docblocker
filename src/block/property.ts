@@ -24,9 +24,9 @@ export default class Property extends Block
         doc.template = Config.instance.get('propertyTemplate');
 
         if (params[5]) {
-            doc.var = this.getTypeFromValue(params[5]);
+            doc.var = this.inferType(params[5]);
         } else {
-            doc.var = '[type]';
+            doc.var = 'type';
         }
 
         return doc;
